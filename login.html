@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NepHR Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #edf2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: row;
+      max-width: 1000px;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        0 16px 40px rgba(0, 0, 0, 0.2),
+        0 24px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .left-pane {
+      background: linear-gradient(to bottom right, #aad7e9, #d0f0f0);
+      color: #003344;
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .left-pane .title {
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .right-pane {
+      flex: 1.5;
+      background: #ffffff;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 10px 0 20px;
+      color: #003344;
+      font-size: 26px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      background-color: #f9f9f9;
+    }
+
+    .date {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 14px;
+      background: linear-gradient(90deg, #4ba9c8, #7cd6cd);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      box-shadow:
+  0 8px 20px rgba(0, 0, 0, 0.15),
+  0 16px 40px rgba(0, 0, 0, 0.2),
+  0 24px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .forgot {
+      text-align: right;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .forgot a {
+      text-decoration: none;
+      color: #00778b;
+    }
+
+    .footer {
+      font-size: 10px;
+      color: #777;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .login-container {
+        flex-direction: column;
+      }
+
+      .left-pane {
+        padding: 20px;
+      }
+
+      .right-pane {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="left-pane">
+      <div class="title">NepHR Management</div>
+    </div>
+
+    <div class="right-pane">
+      <img src="New Logooooo-02.png" alt="Logo" class="logo" />
+      <h2>WELCOME</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <div class="date" id="nepali-date">Date: Loading...</div>
+        <button type="submit">Login</button>
+        <div class="forgot"><a href="#">Forgot Password?</a></div>
+      </form>
+      <div class="footer">© 2025 Babiyakharka SACCOS. All rights reserved.</div>
+    </div>
+  </div>
+
+  <!-- Nepali Date + JS Functionalities -->
+  <script src="https://cdn.jsdelivr.net/npm/nepali-date-converter@2.2.0/dist/nepali-date-converter.min.js"></script>
+  <script>
+    // Show Nepali Date
+    const engDate = new Date();
+    const bs = NepaliDateConverter.ad2bs({
+      year: engDate.getFullYear(),
+      month: engDate.getMonth() + 1,
+      day: engDate.getDate()
+    });
+    const nepaliFormatted = `${bs.year}/${String(bs.month).padStart(2, '0')}/${String(bs.day).padStart(2, '0')}`;
+    document.getElementById("nepali-date").innerText = "Date: " + nepaliFormatted;
+
+    // Form Submit (dummy check)
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (username === "" || password === "") {
+        alert("Please enter both username and password.");
+        return;
+      }
+
+      // Dummy login logic
+      alert("Login successful (dummy)!\nUsername: " + username);
+    });
+  </script>
+</body>
+</html>
